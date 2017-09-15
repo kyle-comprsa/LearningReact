@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import '../node_modules/jquery/dist/jquery.min.js'
 // import '../node_modules/jquery/dist/jquery.min.map'
 // // import $ from "jquery";
@@ -19,7 +19,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 
-/*{ <div>
+<div>
 <Router>
 <div>
     <Route exact path="/" component={Home}/>
@@ -27,9 +27,9 @@ import registerServiceWorker from './registerServiceWorker';
     <Route path="/Contact" component={Contact}/>
 </div>
 </Router>
-</div> }*/
+</div>
 
-ReactDOM.render(<div className="container"><Header/></div>, document.getElementById('root'));
+ReactDOM.render(<About />, document.getElementById('root'));
 
 //DOMContentLoaded.render(<Header/>, document.getElementsByClassName('Container') )
 registerServiceWorker();

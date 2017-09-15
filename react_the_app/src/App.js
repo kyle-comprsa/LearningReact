@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 
 export class App extends Component {
   render() {
@@ -23,11 +24,12 @@ export class Header extends Component {
   
   render() {
     return (
-
+      <Router>
       <div className="header clearfix">
         <nav>
-
+      
           <ul className="nav nav-pills float-right">
+  
             <li className="nav-item">
               <a className="nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
             </li>
@@ -38,9 +40,19 @@ export class Header extends Component {
               <a className="nav-link" href="/Contact">Contact</a>
             </li>
           </ul>
-        </nav>
+        </nav>  
         <h3 className="text-muted">Project name</h3>
+       
+        <Route exact  path="/" component={Home}/>
+        <Route   path="/About" component={About}/>
+        <Route  path="/Contact" component={Contact}/>
+ 
       </div>
+      </Router>
+    
+
+     
+    
  
     );
   }
@@ -49,9 +61,11 @@ export class Jumbotron extends Component {
   render() {
     return (
       <div className="jumbotron">
-        <h1 className="display-3">Jumbotron heading</h1>
-        <p className="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <h1 className="display-3">{this.props.Header}</h1>
+        <p className="lead">{this.props.SubText}</p>
+        {(this.props.showButton =='true')?
         <p><a className="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+        : <p></p>}
       </div>
     );
   }
@@ -83,9 +97,11 @@ export class Container extends Component {
     return (
       
         <div className="container">
-          <Header />   
-          <Jumbotron/>    
-          <Marketing/>
+        
+           <Header /> 
+            <Jumbotron  Header="Contact Us" SubText="24 hours a day 7 days a week support."/>    
+            <Marketing/>
+         
         </div>
   
     
@@ -97,7 +113,8 @@ export class Container extends Component {
 export class Home extends Component {
   render() {    
     return (    
-      <div> <Container/>  </div>
+      <div ><Jumbotron   Header="Home" showButton="true" SubText="Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."/>   
+            <Marketing/></div>
     );
   }
 }
@@ -106,7 +123,7 @@ export class Home extends Component {
 export class About extends Component {
   render() {
     return (
-      <div className="container"> <h1>About</h1> </div>
+      <div className="container"> <Jumbotron  Header="About" SubText="Get to know us..."/>   </div>
     );
   }
 }
@@ -114,7 +131,7 @@ export class About extends Component {
 export class Contact extends Component {
   render() {
     return (
-      <div className="container"> <h1>Contact</h1> </div>
+      <div className="container">  <Jumbotron  Header="Contact" SubText="Reach out and contact us "/>  </div>
     );
   }
 }
